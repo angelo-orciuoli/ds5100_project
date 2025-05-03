@@ -1,5 +1,7 @@
 # DS5100 Final Project: Monte Carlo Simulator
 
+## Metadata
+
 **Author:** Angelo Orciuoli  
 **Version:** 0.1  
 **License:** MIT  

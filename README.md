@@ -83,7 +83,7 @@ analyzer.perm_count()
 The `Die` class simulates a die with customizable faces and weights.
 
 ##### Methods:
-- `__init__(faces: List[Union[str, int]], weights: Optional[List[Union[int, float]]] = None): Initializes the die with given faces (must be strings or numbers) and optional weights (must be integers or floats). If no weights are provided, each face is assigned a default weight of 1.
+- `__init__(faces: List[Union[str, int]], weights: Optional[List[Union[int, float]]] = None)`: Initializes the die with given faces (must be strings or numbers) and optional weights (must be integers or floats). If no weights are provided, each face is assigned a default weight of 1.
 - `change_weight(face: str, weight: float)`: Changes the weight of a specified face of the die.
 - `roll(num_rolls: int)`: Rolls the die a specified number of times and returns list of results.
 - `show()`: Returns a DataFrame of die's faces and their associated weights.

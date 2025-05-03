@@ -75,3 +75,33 @@ analyzer.combo_count()
 analyzer.perm_count()
 ```
 
+## Application Programming Interface
+
+### Classes
+
+#### `Die`
+The `Die` class simulates a die with customizable faces and weights.
+
+##### Methods:
+- `__init__(faces: List[str], weights: Optional[List[float]] = None)`: Initializes the die with given faces and optional weights.
+- `change_weight(face: str, weight: float)`: Changes the weight of a specified face of the die.
+- `roll(num_rolls: int)`: Rolls the die a specified number of times and returns list of results.
+- `show()`: Returns a DataFrame of die's faces and their associated weights.
+
+#### `Game`
+The `Game` class simulates a game with at least one die and allows for rolling and analyzing results.
+
+##### Methods:
+- `__init__(dice: List[Die])`: Initializes the game with a list of `Die` objects.
+- `play(num_rolls: int)`: Rolls all dice a specified number of times.
+- `show_results(form: str = 'narrow')`: Returns the game results in either a single Index or MultiIndex DataFrame.
+
+#### `Analyzer`
+The `Analyzer` class takes a completed `Game` object and provides various analyses.
+
+##### Methods:
+- `__init__(game: Game)`: Initializes the analyzer with a completed `Game` object.
+- `jackpot()`: Returns the number of jackpots (rolls where all faces are identical).
+- `face_count()`: Returns a DataFrame of face counts per roll.
+- `combo_count()`: Returns a DataFrame of distinct combinations of faces rolled and associated counts.
+- `perm_count()`: Returns a DataFrame of distinct permutations of faces rolled and associated counts.

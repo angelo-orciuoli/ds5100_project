@@ -1,13 +1,24 @@
-# DS5100 Final Project: Monte Carlo Simulator
+# Monte Carlo Dice Simulator
 
 ## Metadata
 
 **Author:** Angelo Orciuoli  
-**Version:** 0.1  
+**Version:** 1.0  
 **License:** MIT  
-**GitHub Repository:** [https://github.com/angelo-orciuoli/ds5100_project](https://github.com/angelo-orciuoli/ds5100_project)
+**GitHub Repository:** [https://github.com/angelo-orciuoli/monte-carlo-simulator](https://github.com/angelo-orciuoli/monte-carlo-simulator)
 
-A Python package for simulating dice games using Monte Carlo methods. The package includes modules for modeling dice (`Die`), running simulations (`Game`), and analyzing results (`Analyzer`).
+A comprehensive Python package for simulating dice games using Monte Carlo methods. This project was developed to explore probability distributions and statistical analysis through interactive dice simulations. The package includes three core modules for modeling dice (`Die`), running multi-die simulations (`Game`), and analyzing statistical results (`Analyzer`).
+
+## Overview
+
+Monte Carlo methods are powerful computational techniques for understanding complex probabilistic systems. This simulator allows you to:
+
+- Create custom dice with any number of faces and weighted probabilities
+- Run large-scale simulations with multiple dice
+- Analyze statistical patterns including jackpots, face frequencies, and combinations
+- Explore probability distributions through interactive gameplay
+
+Simple python packages for statisticians, game developers, educators, or anyone interested in probability theory and simulation techniques.
 
 ## Synopsis
 

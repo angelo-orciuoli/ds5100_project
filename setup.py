@@ -4,9 +4,9 @@ from setuptools import setup
 
 setup(
     name='montecarlo',
-    version='0.1',
-    description='Monte Carlo simulation with Die, Game, and Analyzer modules',
-    url='https://github.com/angelo-orciuoli/ds5100_project',
+    version='1.0',
+    description='Monte Carlo dice simulation package with Die, Game, and Analyzer modules',
+    url='https://github.com/angelo-orciuoli/monte-carlo-simulator',
     author='Angelo Orciuoli',
     author_email='arorciuoli@gmail.com',
     license='MIT',

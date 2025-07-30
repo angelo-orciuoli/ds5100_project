@@ -1,118 +1,208 @@
 # Monte Carlo Dice Simulator
 
-## Metadata
-
-**Author:** Angelo Orciuoli  
-**Version:** 1.0  
-**License:** MIT  
-**GitHub Repository:** [https://github.com/angelo-orciuoli/monte-carlo-simulator](https://github.com/angelo-orciuoli/monte-carlo-simulator)
-
-A comprehensive Python package for simulating dice games using Monte Carlo methods. This project was developed to explore probability distributions and statistical analysis through interactive dice simulations. The package includes three core modules for modeling dice (`Die`), running multi-die simulations (`Game`), and analyzing statistical results (`Analyzer`).
+A comprehensive Python package for simulating dice games and analyzing probability distributions using Monte Carlo methods. This project demonstrates advanced statistical modeling techniques through interactive dice simulations and real-world applications.
 
 ## Overview
 
-Monte Carlo methods are powerful computational techniques for understanding complex probabilistic systems. This simulator allows you to:
+Monte Carlo methods are powerful computational techniques for understanding complex probabilistic systems. This simulator provides:
 
-- Create custom dice with any number of faces and weighted probabilities
-- Run large-scale simulations with multiple dice
-- Analyze statistical patterns including jackpots, face frequencies, and combinations
-- Explore probability distributions through interactive gameplay
+- **Flexible Die Creation**: Custom dice with any number of faces and weighted probabilities
+- **Multi-Die Simulations**: Large-scale games with multiple dice configurations
+- **Statistical Analysis**: Comprehensive tools for analyzing patterns, frequencies, and distributions
+- **Real-World Applications**: From basic probability to language modeling and word generation
 
-Simple python packages for statisticians, game developers, educators, or anyone interested in probability theory and simulation techniques.
+Perfect for statisticians, game developers, educators, researchers, or anyone interested in probability theory and simulation techniques.
 
-## Synopsis
+## Features
 
-Below are examples demonstrating how to use the `Die`, `Game`, and `Analyzer` classes in the `montecarlo` package.
+- 🎲 **Custom Dice**: Create dice with any faces (numbers, letters, symbols) and custom weights
+- 🎮 **Game Simulation**: Run thousands of rolls with multiple dice configurations
+- 📊 **Advanced Analytics**: Jackpot analysis, face counting, combination/permutation tracking
+- 📈 **Visualization**: Built-in plotting capabilities for statistical insights
+- 🔤 **Language Modeling**: Generate words using English letter frequency distributions
+- 🧪 **Extensible Design**: Clean, object-oriented architecture for easy customization
 
-### Die
-Create a die with custom faces and roll it.
+## Quick Start
+
+### Installation
+
+```bash
+git clone https://github.com/angelo-orciuoli/monte-carlo-simulator.git
+cd monte-carlo-simulator
+pip install -e .
+```
+
+### Basic Usage
 
 ```python
 from montecarlo.die import Die
-
-# Create a 6-sided die
-die = Die(['1', '2', '3', '4', '5', '6'])
-
-# Change the weight of a face
-die.change_weight('6', 5.0)
-
-# Roll the die 10 times
-rolls = die.roll(10)
-
-# Show die faces and weights
-print(die.show())
-```
-
-### Game
-Play a game with multiple dice.
-
-```python
 from montecarlo.game import Game
+from montecarlo.analyzer import Analyzer
+import numpy as np
 
-# Create three dice
-d1 = Die(['1', '2', '3', '4', '5', '6'])
-d2 = Die(['1', '2', '3', '4', '5', '6'])
-d3 = Die(['1', '2', '3', '4', '5', '6'])
+# Create a weighted six-sided die
+die = Die(np.array([1, 2, 3, 4, 5, 6]))
+die.change_weight(6, 5.0)  # Make 6 five times more likely
 
-# Start a game with the dice
-game = Game([d1, d2, d3])
+# Run a simulation with multiple dice
+game = Game([die, die, die])
+game.play(1000)
 
-# Play the game for 5 rolls
-game.play(5)
+# Analyze the results
+analyzer = Analyzer(game)
+jackpots = analyzer.jackpot()  # Count of all-same-face rolls
+face_counts = analyzer.face_count()  # Detailed face frequency analysis
 
-# Output results in narrow format
-game.show_results(form='narrow')
+print(f"Jackpots found: {jackpots}")
+print(f"Face distribution:\n{face_counts.mean()}")
 ```
 
-### Analyzer
-Analyze the results of a game.
+## Demonstration Scenarios
+
+The `scenarios.ipynb` notebook showcases three comprehensive use cases:
+
+1. **Fair vs. Unfair Coins**: Demonstrates how weighted dice affect probability distributions and jackpot frequencies
+2. **Six-Sided Dice Analysis**: Explores complex multi-die scenarios with various bias configurations
+3. **English Word Generation**: Real-world application using letter frequencies to generate and validate English words
+
+Run the notebook to see interactive visualizations and detailed statistical analysis.
+
+## API Reference
+
+### Die Class
+
+Creates and manages individual dice with customizable faces and weights.
+
+**Constructor:**
+- `Die(faces, weights=None)`: Initialize with faces array and optional weights
+
+**Methods:**
+- `change_weight(face, weight)`: Modify the weight of a specific face
+- `roll(num_rolls)`: Roll the die specified number of times
+- `show()`: Display current faces and weights as DataFrame
+
+### Game Class
+
+Manages multi-die simulations and stores results.
+
+**Constructor:**
+- `Game(dice_list)`: Initialize with list of Die objects
+
+**Methods:**
+- `play(num_rolls)`: Execute the specified number of rolls for all dice
+- `show_results(form='narrow')`: Return results as DataFrame (narrow or wide format)
+
+### Analyzer Class
+
+Provides statistical analysis tools for completed games.
+
+**Constructor:**
+- `Analyzer(game)`: Initialize with a completed Game object
+
+**Methods:**
+- `jackpot()`: Count rolls where all dice show the same face
+- `face_count()`: DataFrame of face counts per roll
+- `combo_count()`: Unique combinations with frequencies
+- `perm_count()`: Unique permutations with frequencies
+
+## Project Structure
+
+```
+monte-carlo-simulator/
+├── montecarlo/           # Main package
+│   ├── die.py           # Die class implementation
+│   ├── game.py          # Game simulation engine
+│   └── analyzer.py      # Statistical analysis tools
+├── scenarios.ipynb      # Interactive demonstration notebook
+├── tests.py            # Comprehensive test suite
+├── english_letters.txt  # Letter frequency data
+├── scrabble_words.txt  # English word dictionary
+└── README.md           # This file
+```
+
+## Advanced Examples
+
+### Weighted Coin Simulation
 
 ```python
-from montecarlo.analyzer import Analyzer
+# Create fair and unfair coins
+fair_coin = Die(['H', 'T'])
+unfair_coin = Die(['H', 'T'])
+unfair_coin.change_weight('H', 5)  # Heads 5x more likely
 
-# Create an analyzer for the game
-analyzer = Analyzer(game)
+# Compare jackpot frequencies
+fair_game = Game([fair_coin, fair_coin])
+unfair_game = Game([unfair_coin, unfair_coin])
 
-# Outputs the number of jackpots
-analyzer.jackpot()
+fair_game.play(10000)
+unfair_game.play(10000)
 
-# DataFrame indexed by roll number, with face values as columns and count values in cells
-analyzer.face_count()
+fair_analyzer = Analyzer(fair_game)
+unfair_analyzer = Analyzer(unfair_game)
 
-# MultiIndex DataFrame of distinct combinations and an associated counts column
-analyzer.combo_count()
-
-# MultiIndex DataFrame of distinct permutations and an associated counts column
-analyzer.perm_count()
+print(f"Fair coins jackpot rate: {fair_analyzer.jackpot() / 10000:.3f}")
+print(f"Unfair coins jackpot rate: {unfair_analyzer.jackpot() / 10000:.3f}")
 ```
 
-## Application Programming Interface
+### Letter-Based Word Generation
 
-### Classes
+```python
+import pandas as pd
 
-#### `Die`
-The `Die` class simulates a die with customizable faces and weights.
+# Load English letter frequencies
+letter_data = pd.read_csv('english_letters.txt', sep=r'\s+', header=None)
+letter_die = Die(letter_data[0].values)
 
-##### Methods:
-- `__init__(faces: List[string or number], weights: Optional[List[int or float]] = None)`: Initializes the die with inputted faces and optional weights. If no weights are provided, each face is assigned a default weight of 1.
-- `change_weight(face: str, weight: float)`: Changes the weight of a specified face of the die.
-- `roll(num_rolls: int)`: Rolls the die a specified number of times and returns list of results.
-- `show()`: Returns a DataFrame of die's faces and their associated weights.
+# Apply frequency weights
+for i, (letter, freq) in letter_data.iterrows():
+    letter_die.change_weight(letter, freq)
 
-#### `Game`
-The `Game` class simulates a game with at least one die and allows for rolling and analyzing results.
+# Generate 4-letter combinations
+word_game = Game([letter_die] * 4)
+word_game.play(1000)
 
-##### Methods:
-- `__init__(dice: List[Die])`: Initializes the game with a list of `Die` objects.
-- `play(num_rolls: int)`: Rolls all dice a specified number of times.
-- `show_results(form: str = 'narrow')`: Returns the game results in either a single Index or MultiIndex DataFrame.
+# Analyze for real English words
+analyzer = Analyzer(word_game)
+perms = analyzer.perm_count()
 
-#### `Analyzer`
-The `Analyzer` class takes a completed `Game` object and provides various analyses.
+# Check against dictionary
+vocab = pd.read_csv('scrabble_words.txt', header=None)
+vocab_set = set(vocab[0].str.upper())
+generated_words = [''.join(perm) for perm in perms.index]
+valid_words = [word for word in generated_words if word in vocab_set]
 
-##### Methods:
-- `__init__(game: Game)`: Initializes the analyzer with a completed `Game` object.
-- `jackpot()`: Returns the number of jackpots (rolls where all faces are identical).
-- `face_count()`: Returns a DataFrame of face counts per roll.
-- `combo_count()`: Returns a DataFrame of distinct combinations of faces rolled and associated counts.
-- `perm_count()`: Returns a DataFrame of distinct permutations of faces rolled and associated counts.
+print(f"Generated {len(valid_words)} valid English words!")
+```
+
+## Testing
+
+Run the comprehensive test suite:
+
+```bash
+python tests.py
+```
+
+The test suite covers all major functionality including edge cases, error handling, and statistical accuracy validation.
+
+## Contributing
+
+This project welcomes contributions! Areas for enhancement include:
+
+- Additional statistical analysis methods
+- Performance optimizations for large simulations
+- Extended visualization capabilities
+- New demonstration scenarios
+- Documentation improvements
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Author
+
+**Angelo Orciuoli**  
+[GitHub Profile](https://github.com/angelo-orciuoli)
+
+---
+
+*Explore the fascinating world of probability and statistics through interactive Monte Carlo simulation!*

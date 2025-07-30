@@ -15,12 +15,12 @@ Perfect for statisticians, game developers, educators, researchers, or anyone in
 
 ## Features
 
-- 🎲 **Custom Dice**: Create dice with any faces (numbers, letters, symbols) and custom weights
-- 🎮 **Game Simulation**: Run thousands of rolls with multiple dice configurations
-- 📊 **Advanced Analytics**: Jackpot analysis, face counting, combination/permutation tracking
-- 📈 **Visualization**: Built-in plotting capabilities for statistical insights
-- 🔤 **Language Modeling**: Generate words using English letter frequency distributions
-- 🧪 **Extensible Design**: Clean, object-oriented architecture for easy customization
+- **Custom Dice**: Create dice with any faces (numbers, letters, symbols) and custom weights
+- **Game Simulation**: Run thousands of rolls with multiple dice configurations
+- **Advanced Analytics**: Jackpot analysis, face counting, combination/permutation tracking
+- **Visualization**: Built-in plotting capabilities for statistical insights
+- **Language Modeling**: Generate words using English letter frequency distributions
+- **Extensible Design**: Clean, object-oriented architecture for easy customization
 
 ## Quick Start
 
@@ -110,69 +110,15 @@ Provides statistical analysis tools for completed games.
 ```
 monte-carlo-simulator/
 ├── montecarlo/           # Main package
-│   ├── die.py           # Die class implementation
-│   ├── game.py          # Game simulation engine
-│   └── analyzer.py      # Statistical analysis tools
-├── scenarios.ipynb      # Interactive demonstration notebook
-├── tests.py            # Comprehensive test suite
-├── english_letters.txt  # Letter frequency data
-├── scrabble_words.txt  # English word dictionary
-└── README.md           # This file
+│   ├── die.py            # Die class
+│   ├── game.py           # Game class
+│   └── analyzer.py       # Analyzer class
+├── tests.py              # Test suite
+├── english_letters.txt   # Letter frequency data
+├── scrabble_words.txt    # English word dictionary
+└── README.md             # Project documentation
 ```
 
-## Advanced Examples
-
-### Weighted Coin Simulation
-
-```python
-# Create fair and unfair coins
-fair_coin = Die(['H', 'T'])
-unfair_coin = Die(['H', 'T'])
-unfair_coin.change_weight('H', 5)  # Heads 5x more likely
-
-# Compare jackpot frequencies
-fair_game = Game([fair_coin, fair_coin])
-unfair_game = Game([unfair_coin, unfair_coin])
-
-fair_game.play(10000)
-unfair_game.play(10000)
-
-fair_analyzer = Analyzer(fair_game)
-unfair_analyzer = Analyzer(unfair_game)
-
-print(f"Fair coins jackpot rate: {fair_analyzer.jackpot() / 10000:.3f}")
-print(f"Unfair coins jackpot rate: {unfair_analyzer.jackpot() / 10000:.3f}")
-```
-
-### Letter-Based Word Generation
-
-```python
-import pandas as pd
-
-# Load English letter frequencies
-letter_data = pd.read_csv('english_letters.txt', sep=r'\s+', header=None)
-letter_die = Die(letter_data[0].values)
-
-# Apply frequency weights
-for i, (letter, freq) in letter_data.iterrows():
-    letter_die.change_weight(letter, freq)
-
-# Generate 4-letter combinations
-word_game = Game([letter_die] * 4)
-word_game.play(1000)
-
-# Analyze for real English words
-analyzer = Analyzer(word_game)
-perms = analyzer.perm_count()
-
-# Check against dictionary
-vocab = pd.read_csv('scrabble_words.txt', header=None)
-vocab_set = set(vocab[0].str.upper())
-generated_words = [''.join(perm) for perm in perms.index]
-valid_words = [word for word in generated_words if word in vocab_set]
-
-print(f"Generated {len(valid_words)} valid English words!")
-```
 
 ## Testing
 
@@ -184,25 +130,13 @@ python tests.py
 
 The test suite covers all major functionality including edge cases, error handling, and statistical accuracy validation.
 
-## Contributing
+## Outcomes
 
-This project welcomes contributions! Areas for enhancement include:
-
-- Additional statistical analysis methods
-- Performance optimizations for large simulations
-- Extended visualization capabilities
-- New demonstration scenarios
-- Documentation improvements
+This project provides experience in applying Monte Carlo simulation techniques to probabilistic systems. Key competencies include constructing custom probability distributions, executing large-scale simulations, and conducting statistical analysis using Python. Emphasis is placed on object-oriented programming, data visualization, and interpretation of probabilistic outcomes. Real-world scenarios—such as coin bias detection and English word generation—demonstrate practical applications in statistics, computational modeling, and simulation-based inference.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Author
-
-**Angelo Orciuoli**  
-[GitHub Profile](https://github.com/angelo-orciuoli)
-
 ---
 
-*Explore the fascinating world of probability and statistics through interactive Monte Carlo simulation!*

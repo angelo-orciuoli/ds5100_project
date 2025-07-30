@@ -57,16 +57,6 @@ print(f"Jackpots found: {jackpots}")
 print(f"Face distribution:\n{face_counts.mean()}")
 ```
 
-## Demonstration Scenarios
-
-The `scenarios.ipynb` notebook showcases three comprehensive use cases:
-
-1. **Fair vs. Unfair Coins**: Demonstrates how weighted dice affect probability distributions and jackpot frequencies
-2. **Six-Sided Dice Analysis**: Explores complex multi-die scenarios with various bias configurations
-3. **English Word Generation**: Real-world application using letter frequencies to generate and validate English words
-
-Run the notebook to see interactive visualizations and detailed statistical analysis.
-
 ## API Reference
 
 ### Die Class

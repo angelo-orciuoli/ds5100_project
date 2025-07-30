@@ -22,42 +22,21 @@ Perfect for statisticians, game developers, educators, researchers, or anyone in
 - **Language Modeling**: Generate words using English letter frequency distributions
 - **Extensible Design**: Clean, object-oriented architecture for easy customization
 
-## Quick Start
+## Project Structure
 
-### Installation
-
-```bash
-git clone https://github.com/angelo-orciuoli/monte-carlo-simulator.git
-cd monte-carlo-simulator
-pip install -e .
+```
+monte-carlo-simulator/
+├── montecarlo/           # Main package
+│   ├── die.py            # Die class
+│   ├── game.py           # Game class
+│   └── analyzer.py       # Analyzer class
+├── tests.py              # Test suite
+├── english_letters.txt   # Letter frequency data
+├── scrabble_words.txt    # English word dictionary
+└── README.md             # Project documentation
 ```
 
-### Basic Usage
-
-```python
-from montecarlo.die import Die
-from montecarlo.game import Game
-from montecarlo.analyzer import Analyzer
-import numpy as np
-
-# Create a weighted six-sided die
-die = Die(np.array([1, 2, 3, 4, 5, 6]))
-die.change_weight(6, 5.0)  # Make 6 five times more likely
-
-# Run a simulation with multiple dice
-game = Game([die, die, die])
-game.play(1000)
-
-# Analyze the results
-analyzer = Analyzer(game)
-jackpots = analyzer.jackpot()  # Count of all-same-face rolls
-face_counts = analyzer.face_count()  # Detailed face frequency analysis
-
-print(f"Jackpots found: {jackpots}")
-print(f"Face distribution:\n{face_counts.mean()}")
-```
-
-## API Reference
+## Module Documentation
 
 ### Die Class
 
@@ -95,22 +74,13 @@ Provides statistical analysis tools for completed games.
 - `combo_count()`: Unique combinations with frequencies
 - `perm_count()`: Unique permutations with frequencies
 
-## Project Structure
 
-```
-monte-carlo-simulator/
-├── montecarlo/           # Main package
-│   ├── die.py            # Die class
-│   ├── game.py           # Game class
-│   └── analyzer.py       # Analyzer class
-├── tests.py              # Test suite
-├── english_letters.txt   # Letter frequency data
-├── scrabble_words.txt    # English word dictionary
-└── README.md             # Project documentation
-```
+## Example
+
+This [Demonstration Scenarios](https://angelo-orciuoli.github.io/monte-carlo-simulator/) page showcases the how the package is used through three real-world simulation scenarios, including weighted dice behavior, jackpot probability analysis, and English word generation using letter frequency distributions.
 
 
-## Testing
+## Unit tests
 
 Run the comprehensive test suite:
 
@@ -127,6 +97,3 @@ This project provides experience in applying Monte Carlo simulation techniques t
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-

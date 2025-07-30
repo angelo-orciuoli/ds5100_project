@@ -77,7 +77,7 @@ Provides statistical analysis tools for completed games.
 
 ## Example
 
-This [Scenario Demonstrations](https://angelo-orciuoli.github.io/monte-carlo-simulator/) page showcases the how the package is used through three real-world simulation scenarios, including weighted dice behavior, jackpot probability analysis, and English word generation using letter frequency distributions.
+The index.html file showcases the how the package is used through three real-world simulation scenarios, including weighted dice behavior, jackpot probability analysis, and English word generation using letter frequency distributions.
 
 
 ## Unit tests
